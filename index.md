@@ -124,8 +124,14 @@ scenario: List all pets
 
 ### 4. Run your tests
 
+**Gradle**
 ```bash
 ./gradlew test
+```
+
+**Maven**
+```bash
+mvn test
 ```
 
 ## Get Started
