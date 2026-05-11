@@ -2,6 +2,9 @@
 layout: default
 ---
 
+BerryCrush
+==========
+
 ## What is BerryCrush?
 
 BerryCrush is a **behavior-driven development (BDD) testing framework** that generates API test code directly from your OpenAPI specification. Write tests in a human-readable `.scenario` format and let BerryCrush handle the rest.
@@ -91,10 +94,8 @@ testImplementation("org.berrycrush:berrycrush-junit:1.0.0")
 @Suite
 @IncludeEngines("berrycrush")
 @BerryCrushScenarios(locations = "scenarios/*.scenario")
-@BerryCrushConfiguration(
-    bindings = PetstoreBindings.class,
-    openApiSpec = "petstore.yaml"
-)
+@BerryCrushSpec("petstore.yaml")
+@BerryCrushConfiguration(bindings = PetstoreBindings.class)
 public class PetstoreScenarioTest {
 }
 ```
@@ -103,7 +104,9 @@ public class PetstoreScenarioTest {
 public class PetstoreBindings implements BerryCrushBindings {
     @Override
     public Map<String, Object> getBindings() {
-        return Map.of("baseUrl", "http://localhost:8080");
+        return Map.of(
+            BerryCrushBindings.DEFAULT_BINDING_NAME, new OpenApiSpecValue("petstore.yaml", "http://localhost:8080")
+        );
     }
 }
 ```
