@@ -1,0 +1,101 @@
+<!-- highlight.js for syntax highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gherkin.min.js"></script>
+
+<script>
+// Register BerryCrush as a custom language extending Gherkin
+hljs.registerLanguage('berrycrush', function(hljs) {
+  return {
+    name: 'BerryCrush',
+    case_insensitive: true,
+    keywords: {
+      keyword: 'scenario given when then call body path query header status include fragment using',
+      built_in: 'response request',
+      literal: 'true false null'
+    },
+    contains: [
+      hljs.HASH_COMMENT_MODE,
+      {
+        className: 'string',
+        begin: '"',
+        end: '"',
+        contains: [hljs.BACKSLASH_ESCAPE]
+      },
+      {
+        className: 'string',
+        begin: "'",
+        end: "'",
+        contains: [hljs.BACKSLASH_ESCAPE]
+      },
+      {
+        className: 'variable',
+        begin: /\$\{/,
+        end: /\}/
+      },
+      {
+        className: 'symbol',
+        begin: /\^[a-zA-Z_][a-zA-Z0-9_]*/
+      },
+      {
+        className: 'number',
+        begin: /\b\d+(\.\d+)?\b/
+      },
+      {
+        className: 'title',
+        begin: /^scenario:/,
+        end: /$/,
+        excludeBegin: true
+      },
+      {
+        className: 'keyword',
+        begin: /^\s*(given|when|then|call|body|path|query|header|status|include|fragment):/
+      }
+    ]
+  };
+});
+
+// Apply highlighting after page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Convert gherkin blocks to berrycrush
+  document.querySelectorAll('pre code.language-gherkin').forEach(function(block) {
+    block.className = 'language-berrycrush';
+  });
+  
+  hljs.highlightAll();
+});
+</script>
+
+<style>
+/* BerryCrush syntax colors */
+.hljs-symbol {
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #9c27b0;
+}
+
+.hljs-keyword {
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+.hljs-title {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.hljs-string {
+  color: #ff5722;
+}
+
+.hljs-number {
+  color: #00838f;
+}
+
+.hljs-built_in {
+  color: #6a1b9a;
+}
+</style>
