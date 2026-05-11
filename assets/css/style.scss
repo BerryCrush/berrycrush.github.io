@@ -16,26 +16,26 @@
   --code-bg: #f5f5f5;
 }
 
-/* Hide or minimize the sidebar title */
-header.page-header,
-.project-name {
+/* Hide the entire header */
+header {
   display: none !important;
 }
 
-/* Alternative: Style as subtle ribbon */
-.site-title,
-header h1 {
+/* Page title as corner ribbon */
+.page-title-ribbon {
   position: fixed;
-  top: 0;
-  right: -50px;
+  top: 20px;
+  right: -60px;
   transform: rotate(45deg);
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
-  font-size: 0.7rem;
-  padding: 0.3rem 3rem;
-  z-index: 100;
-  opacity: 0.9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 4rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 /* Hero Section */
