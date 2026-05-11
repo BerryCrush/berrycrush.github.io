@@ -1,13 +1,6 @@
 ---
 layout: default
-title: BerryCrush - OpenAPI-driven BDD Testing
 ---
-
-<div class="hero">
-  <h1>BerryCrush</h1>
-  <p class="tagline">OpenAPI-driven BDD Testing Framework</p>
-  <p class="subtitle">Write readable API tests using natural language, powered by your OpenAPI specification</p>
-</div>
 
 ## What is BerryCrush?
 
