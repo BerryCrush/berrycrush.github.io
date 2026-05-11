@@ -70,18 +70,42 @@ scenario: Create and retrieve a pet
 
 ### 1. Add the dependency
 
+**Gradle (Kotlin DSL)**
 ```kotlin
-// Gradle (Kotlin DSL)
 testImplementation("org.berrycrush:berrycrush-junit:1.0.0")
 ```
 
-### 2. Configure your OpenAPI spec
+**Maven**
+```xml
+<dependency>
+    <groupId>org.berrycrush</groupId>
+    <artifactId>berrycrush-junit</artifactId>
+    <version>1.0.0</version>
+    <scope>test</scope>
+</dependency>
+```
 
-```yaml
-# application.yml
-berrycrush:
-  openapi:
-    path: src/test/resources/petstore.yaml
+### 2. Create a test suite
+
+```java
+@Suite
+@IncludeEngines("berrycrush")
+@BerryCrushScenarios(locations = "scenarios/*.scenario")
+@BerryCrushConfiguration(
+    bindings = PetstoreBindings.class,
+    openApiSpec = "petstore.yaml"
+)
+public class PetstoreScenarioTest {
+}
+```
+
+```java
+public class PetstoreBindings implements BerryCrushBindings {
+    @Override
+    public Map<String, Object> getBindings() {
+        return Map.of("baseUrl", "http://localhost:8080");
+    }
+}
 ```
 
 ### 3. Write your first scenario
